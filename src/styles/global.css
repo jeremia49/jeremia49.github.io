@@ -202,6 +202,22 @@ pre code { background: none; padding: 0; }
 .entry-period { color: var(--text-muted); font-size: 0.88rem; white-space: nowrap; }
 .entry ul { margin: 8px 0 0; padding-left: 18px; color: var(--text-muted); }
 .entry ul li { margin-bottom: 4px; }
+.attachment-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.attachment-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.attachment-link:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.attachment-jpg { color: #f0883e; }
+.attachment-pdf { color: #f85149; }
+.attachment-url { color: var(--accent); }
 
 .cols-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px 32px; }
 

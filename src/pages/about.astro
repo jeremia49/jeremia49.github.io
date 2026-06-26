@@ -4,6 +4,39 @@ import {
   site, about, employment, education, publications,
   skills, awards, certifications,
 } from '../data/site';
+
+type Attachment = {
+  label?: string;
+  href: string;
+  type?: 'jpg' | 'pdf' | 'url';
+};
+
+type CredentialItem = {
+  title: string;
+  year: string;
+  org: string;
+  attachments?: Attachment[];
+};
+
+const getAttachmentLabel = (attachment: Attachment) => {
+  if (attachment.label) return attachment.label;
+  if (attachment.type === 'jpg') return 'JPG';
+  if (attachment.type === 'pdf') return 'PDF';
+  return 'URL';
+};
+
+const getAttachmentType = (href: string): Attachment['type'] => {
+  const cleanHref = href.split(/[?#]/)[0].toLowerCase();
+  if (/\.(jpe?g)$/.test(cleanHref)) return 'jpg';
+  if (/\.pdf$/.test(cleanHref)) return 'pdf';
+  return 'url';
+};
+
+const normalizeAttachments = (item: CredentialItem) =>
+  item.attachments?.map((attachment) => ({
+    ...attachment,
+    type: attachment.type ?? getAttachmentType(attachment.href),
+  })) ?? [];
 ---
 <BaseLayout title="About" description={about.summary}>
   <section class="page-head">
@@ -78,6 +111,15 @@ import {
           <span class="entry-period">{a.year}</span>
         </div>
         <p style="margin: 4px 0 0; color: var(--text-muted); font-size: 0.9rem;">{a.org}</p>
+        {normalizeAttachments(a).length > 0 && (
+          <div class="attachment-links" aria-label={`Attachments for ${a.title}`}>
+            {normalizeAttachments(a).map((attachment) => (
+              <a class={`attachment-link attachment-${attachment.type}`} href={attachment.href} target="_blank" rel="noopener noreferrer">
+                {getAttachmentLabel(attachment)} ↗
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     ))}
   </div>
@@ -91,6 +133,15 @@ import {
           <span class="entry-period">{c.year}</span>
         </div>
         <p style="margin: 4px 0 0; color: var(--text-muted); font-size: 0.9rem;">{c.org}</p>
+        {normalizeAttachments(c).length > 0 && (
+          <div class="attachment-links" aria-label={`Attachments for ${c.title}`}>
+            {normalizeAttachments(c).map((attachment) => (
+              <a class={`attachment-link attachment-${attachment.type}`} href={attachment.href} target="_blank" rel="noopener noreferrer">
+                {getAttachmentLabel(attachment)} ↗
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     ))}
   </div>
