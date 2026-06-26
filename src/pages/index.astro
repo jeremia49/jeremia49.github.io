@@ -14,12 +14,24 @@ const showcase = (featured.length > 0 ? featured : projects.slice(0, 3));
 ---
 <BaseLayout>
   <section class="hero">
-    <h1>{site.name}</h1>
-    <p class="tagline">{site.tagline}</p>
-    <div class="hero-links">
-      <a class="btn btn-primary" href={withBase('/projects')}>View Projects</a>
-      <a class="btn" href={withBase('/blog')}>Read Blog</a>
-      <a class="btn" href={`mailto:${site.email}`}>Contact</a>
+    <div class="hero-content">
+      <div>
+        <h1>{site.name}</h1>
+        <p class="tagline">{site.tagline}</p>
+        <div class="hero-links">
+          <a class="btn btn-primary" href={withBase('/projects')}>View Projects</a>
+          <a class="btn" href={withBase('/blog')}>Read Blog</a>
+          <a class="btn" href={`mailto:${site.email}`}>Contact</a>
+        </div>
+      </div>
+      <img
+        class="profile-photo"
+        src={withBase('/media/fotoprofil.webp')}
+        alt={`Foto profil ${site.name}`}
+        width="220"
+        height="220"
+        loading="eager"
+      />
     </div>
   </section>
 

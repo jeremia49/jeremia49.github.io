@@ -9,7 +9,7 @@ export const site = {
   title: 'Jeremia Manurung, S.Kom., Gr.',
   tagline:
     'Computer Science graduate & Master’s student — web, mobile & game development, AI/ML.',
-  email: 'jeremia49@icloud.com',
+  email: 'jeremiaman49@gmail.com',
   github: 'https://github.com/jeremia49',
   orcid: 'https://orcid.org/0009-0002-1809-7480',
   // shown in <head> as the default social/SEO description
