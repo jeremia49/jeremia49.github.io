@@ -1,4 +1,4 @@
-# Jeremia Manurung — Portfolio & Blog
+# My Portofolio and Blog
 
 Personal portfolio and blog built with [Astro](https://astro.build) + Markdown,
 deployed automatically to **GitHub Pages**.
