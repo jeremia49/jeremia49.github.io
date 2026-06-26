@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  date: Date;
+  cover?: ImageMetadata;
+  tags?: string[];
+}
+const { href, title, description, date, cover, tags = [] } = Astro.props;
+const dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+---
+<article class="card">
+  <a href={href}>
+    {cover && <Image src={cover} alt={title} class="card-cover" widths={[400, 800]} sizes="(max-width: 600px) 100vw, 400px" />}
+    <div class="card-body">
+      <h3 class="card-title">{title}</h3>
+      <p class="card-desc">{description}</p>
+      {tags.length > 0 && (
+        <div class="chips">
+          {tags.slice(0, 4).map((t) => <span class="chip">{t}</span>)}
+        </div>
+      )}
+      <span class="card-meta">{dateStr}</span>
+    </div>
+  </a>
+</article>

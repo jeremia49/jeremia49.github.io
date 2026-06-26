@@ -1,0 +1,43 @@
+---
+// Renders a YouTube/Vimeo embed or a local/remote <video> file.
+interface Props { src: string; }
+const { src } = Astro.props;
+
+function youtubeId(url: string): string | null {
+  const m = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+function vimeoId(url: string): string | null {
+  const m = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  return m ? m[1] : null;
+}
+const yt = youtubeId(src);
+const vm = vimeoId(src);
+const isFile = /\.(mp4|webm|ogg|mov)$/i.test(src);
+---
+<div class="video-embed">
+  {yt && (
+    <iframe
+      src={`https://www.youtube-nocookie.com/embed/${yt}`}
+      title="Video"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  )}
+  {vm && (
+    <iframe
+      src={`https://player.vimeo.com/video/${vm}`}
+      title="Video"
+      loading="lazy"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  )}
+  {!yt && !vm && isFile && (
+    <video controls preload="metadata" src={src}></video>
+  )}
+  {!yt && !vm && !isFile && (
+    <a class="btn" href={src}>Watch video ↗</a>
+  )}
+</div>

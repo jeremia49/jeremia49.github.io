@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { site, about, skills } from '../data/site';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => ('/' + base + href).replace(/\/+/g, '/');
+
+const projects = (await getCollection('projects', (p) => !p.data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const featured = projects.filter((p) => p.data.featured).slice(0, 3);
+const showcase = (featured.length > 0 ? featured : projects.slice(0, 3));
+---
+<BaseLayout>
+  <section class="hero">
+    <h1>{site.name}</h1>
+    <p class="tagline">{site.tagline}</p>
+    <div class="hero-links">
+      <a class="btn btn-primary" href={withBase('/projects')}>View Projects</a>
+      <a class="btn" href={withBase('/blog')}>Read Blog</a>
+      <a class="btn" href={`mailto:${site.email}`}>Contact</a>
+    </div>
+  </section>
+
+  <section>
+    <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 720px;">
+      {about.summary}
+    </p>
+  </section>
+
+  {showcase.length > 0 && (
+    <section>
+      <h2>Featured Projects</h2>
+      <div class="grid">
+        {showcase.map((p) => (
+          <ProjectCard
+            href={withBase(`/projects/${p.id}`)}
+            title={p.data.title}
+            description={p.data.description}
+            date={p.data.date}
+            cover={p.data.cover}
+            tags={p.data.tags}
+          />
+        ))}
+      </div>
+      <p style="margin-top: 16px;"><a href={withBase('/projects')}>All projects →</a></p>
+    </section>
+  )}
+
+  <section>
+    <h2>Skills</h2>
+    <div class="section">
+      {skills.map((s) => (
+        <div class="entry">
+          <div class="entry-head"><span class="entry-title">{s.group}</span></div>
+          <div class="chips" style="margin-top: 8px;">
+            {s.items.map((i) => <span class="chip chip-tech">{i}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+    <p style="margin-top: 16px;"><a href={withBase('/about')}>Full CV & background →</a></p>
+  </section>
+</BaseLayout>
