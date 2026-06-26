@@ -14,7 +14,7 @@ export const site = {
   orcid: 'https://orcid.org/0009-0002-1809-7480',
   // shown in <head> as the default social/SEO description
   description:
-    'Portfolio and blog of Jeremia Manurung — Computer Science (UNIMED), Master’s student at Universitas Gadjah Mada. Web, mobile, game development and applied AI/ML.',
+    'Portfolio and blog of Jeremia Manurung — Computer Science Master’s student at Universitas Gadjah Mada. Web, mobile, game development and applied AI/ML.',
 };
 
 export const about = {
@@ -133,11 +133,6 @@ export const awards = [
     year: '2024',
     title: 'Best Graduate Award',
     org: 'Universitas Negeri Medan (UNIMED)',
-  },
-  {
-    year: '2024',
-    title: 'PKM–PI Funding Recipient',
-    org: '“Kreasi Teselasi Pemanfaatan Etnomatematika pada Motif Ulos Berbasis Website di Koperasi Argado Bona Ni Pinasa” — Kemendikbud',
   },
   {
     year: '2023',
