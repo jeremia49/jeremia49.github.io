@@ -11,7 +11,7 @@ links:
   - label: "Journal Article (DOI)"
     url: "https://doi.org/10.24014/ijaidm.v8i1.31866"
 # Embedded video — paste a YouTube/Vimeo URL or a /media/*.mp4 path:
-# video: "https://www.youtube.com/watch?v=XXXXXXXXXXX"
+video: "https://youtu.be/CHvSiiMTjEw?si=XtOgR93AhbVGASsq&t=305"
 gallery: []
 ---
 
@@ -43,6 +43,3 @@ locate → warn.
 The classifier reached strong accuracy on the held-out set and ran on-device via
 TensorFlow Lite. Full methodology and metrics are in the published article linked
 above.
-
-> This is example seed content. Replace the text, add a `cover` image, a `video`,
-> and `gallery` photos to document the real project. See the repo README for how.
