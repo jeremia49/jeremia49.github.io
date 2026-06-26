@@ -10,7 +10,6 @@ featured: true
 links:
   - label: "Journal Article (DOI)"
     url: "https://doi.org/10.24014/ijaidm.v8i1.31866"
-# Embedded video — paste a YouTube/Vimeo URL or a /media/*.mp4 path:
 video: "https://youtu.be/CHvSiiMTjEw?si=XtOgR93AhbVGASsq&t=305"
 gallery: []
 ---
